@@ -11,6 +11,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import io.ktor.locations.*
 import io.ktor.features.*
 import io.ktor.http.content.*
+import dummy.nodomain.controller.xRoute
+import java.io.File
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -40,7 +42,8 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
-        static("/static"){
+        // thymeleafで外部CSSとJSを読み込むために必要。
+        static("/static") {
             resources("static")
         }
         get("/") {
@@ -61,6 +64,8 @@ fun Application.module(testing: Boolean = false) {
         get<Type.List> {
             call.respondText("Inside $it")
         }
+        xRoute()
+
     }
 }
 
