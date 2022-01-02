@@ -12,7 +12,7 @@ fun Route.xRoute(){
         call.respondText { "hogehoge" }
     }
     // io.ktor.routing#get
-    @Location("/user/{userName}/{userAge}")
+    @Location("/user/{userName}/{userAge}/uri")
     data class User(val userName: String, val userAge: String)
 
     get<User>({param ->
